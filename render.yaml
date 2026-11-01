@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: smart-health-assistant
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: API_KEY
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: FIREBASE_JSON
+        sync: false

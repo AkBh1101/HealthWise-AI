@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HealthWise AI</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#06141a;--card:rgba(13,30,38,.78);--ln:rgba(255,255,255,.09);--tx:#e8f1f2;--mu:#93aab0;--ac:#2dd4bf;--ac2:#60a5fa;--on:#04201d}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 'DM Sans',sans-serif}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:-1}
+h1,h2,h3{font-family:'Sora',sans-serif;margin:0;letter-spacing:-.02em}
+.nav{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 40px;background:rgba(6,20,26,.7);backdrop-filter:blur(14px);border-bottom:1px solid var(--ln)}
+.brand{display:flex;gap:10px;align-items:center;font:700 17px 'Sora',sans-serif}.brand i{width:12px;height:12px;border-radius:50%;background:var(--ac);box-shadow:0 0 14px var(--ac)}
+.tabs{display:flex;gap:4px;padding:4px;border:1px solid var(--ln);border-radius:12px}
+.tabs button{min-height:44px;padding:0 18px;border:0;border-radius:9px;background:none;color:var(--mu);font:500 14px 'DM Sans';cursor:pointer}
+.tabs .on{background:var(--ac);color:var(--on);font-weight:700}
+main{max-width:1100px;margin:0 auto;padding:64px 28px 40px}
+.hero h1{font-size:clamp(38px,7vw,76px);line-height:1.04;max-width:780px}.hero p{color:var(--mu);font-size:19px;max-width:560px;margin:20px 0 40px}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:20px;padding:30px;backdrop-filter:blur(12px);margin-bottom:24px}
+label{display:block;font-weight:700;font-size:14px;margin:0 0 8px}
+input,textarea{width:100%;min-height:50px;background:rgba(0,0,0,.28);color:var(--tx);border:1px solid var(--ln);border-radius:12px;padding:13px 15px;font:16px 'DM Sans'}
+textarea{min-height:120px;resize:vertical}input:focus,textarea:focus,button:focus-visible{outline:2px solid var(--ac);outline-offset:1px}
+.f{display:grid;gap:18px}.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:44px;padding:0 16px;border:1px solid var(--ln);border-radius:99px;background:none;color:var(--tx);font:500 14px 'DM Sans';cursor:pointer}.chip.on{background:rgba(45,212,191,.16);border-color:var(--ac);color:var(--ac)}
+.btn,.btn-g,.btn-d{min-height:50px;padding:0 26px;border-radius:12px;font:700 15px 'Sora';cursor:pointer;border:1px solid transparent}
+.btn{background:var(--ac);color:var(--on)}.btn:disabled{opacity:.6}.btn-g{background:none;color:var(--tx);border-color:var(--ln)}.btn-d{background:none;color:#fca5a5;border-color:#7f3a3a}
+.rh{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}.rh small,.mu{color:var(--mu)}.rh h2{font-size:34px;margin-top:4px}
+.dg{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:22px 0}
+.dc{border:1px solid var(--ln);border-radius:16px;padding:20px;background:rgba(255,255,255,.03)}.dc h3{color:var(--ac);font-size:19px;margin-bottom:10px}.dc p{margin:8px 0;font-size:15px}.dc span{display:block;font-size:12px;color:var(--mu);font-weight:700}
+.note{color:var(--mu);font-size:13px;margin:12px 0 0}
+.bar{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-bottom:18px}
+#log{height:440px;overflow:auto;display:flex;flex-direction:column;gap:14px;padding-right:6px}
+.m{display:flex;gap:10px;align-items:flex-end}.m.u{justify-content:flex-end}.av{width:34px;height:34px;border-radius:50%;background:rgba(45,212,191,.16);flex:none;position:relative}.av:after{content:'';position:absolute;inset:11px;border-radius:50%;background:var(--ac)}
+.b{max-width:76%;padding:12px 16px;border-radius:18px 18px 18px 4px;background:rgba(255,255,255,.07)}.u .b{background:var(--ac);color:var(--on);border-radius:18px 18px 4px 18px}
+.ty{animation:p 1s infinite}@keyframes p{50%{opacity:.3}}
+.comp{display:flex;gap:10px;margin-top:16px}.comp input{border-radius:99px;padding-left:22px}.comp .btn{border-radius:99px}
+.met{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}.met .card{margin:0;padding:20px}.met b{display:block;font:700 28px 'Sora';margin-top:4px}
+.row{display:grid;grid-template-columns:130px 1fr 36px;gap:12px;align-items:center;font-size:14px;margin:8px 0}.row div div{height:10px;border-radius:9px;background:linear-gradient(90deg,var(--ac),var(--ac2))}
+.tw{overflow-x:auto}table{width:100%;min-width:720px;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--ln);vertical-align:top}th{color:var(--mu);font-size:12px}
+.pill{display:inline-block;padding:3px 11px;border-radius:99px;background:rgba(96,165,250,.16);color:#93c5fd;font-size:13px;font-weight:700}
+#toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,30px);background:#0f2a33;border:1px solid var(--ac);padding:12px 20px;border-radius:12px;opacity:0;transition:.25s;z-index:9}#toast.on{opacity:1;transform:translate(-50%,0)}
+footer{text-align:center;color:var(--mu);font-size:13px;padding:30px}
+@media(max-width:720px){.nav{padding:12px 16px}main{padding:40px 16px}.b{max-width:88%}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<header class="nav"><div class="brand"><i></i>HealthWise AI</div>
+<nav class="tabs" aria-label="Mode"><button data-v="check">Disease Form</button><button data-v="chat">Chatbot</button><button data-v="admin">View Predictions</button></nav></header>
+<main>
+<section id="v-check" class="view"><div class="hero"><h1>How are you feeling today?</h1><p>Describe your symptoms in your own words. AI reads them, rules check them against water-borne diseases, and you get clear next steps.</p></div>
+<form id="f" class="card f"><div><label for="name">Your name</label><input id="name" placeholder="Enter your name" autocomplete="name"></div>
+<div><label for="sym">Your symptoms</label><textarea id="sym" placeholder="e.g. fever, stomach pain, vomiting for two days"></textarea></div>
+<div class="chips" id="chips" aria-label="Common symptoms"></div><div><button class="btn" id="go">Predict Disease</button></div></form>
+<div id="res" aria-live="polite"></div></section>
+<section id="v-chat" class="view" hidden><div class="hero"><h1>Ask the assistant</h1><p>Type your symptoms or any health question. Your conversation stays on this device.</p></div>
+<div class="card"><div class="bar"><div class="chips" id="qp"></div><button class="btn-g" id="clr">Clear chat</button></div><div id="log" aria-live="polite"></div>
+<div class="comp"><label for="msg" hidden>Message</label><input id="msg" placeholder="Type your symptoms or query..."><button class="btn" id="snd">Send</button></div></div></section>
+<section id="v-admin" class="view" hidden><div class="hero"><h1>Predictions</h1><p>Every check submitted through the form.</p></div>
+<div id="gate" class="card" style="max-width:440px"><label for="pw">Admin password</label><div class="comp" style="margin:0"><input id="pw" type="password" placeholder="Enter admin password" style="border-radius:12px"><button class="btn" id="login" style="border-radius:12px">Unlock</button></div></div>
+<div id="dash" hidden><div class="met" id="met"></div><div class="card"><h3 style="margin-bottom:10px">Diseases by count</h3><div id="dist"></div></div>
+<div class="card"><div class="bar"><input id="q" placeholder="Search name, symptoms or disease" style="max-width:340px"><div class="chips"><button class="btn" id="csv">Download as CSV</button><button class="btn-g" id="bf">Backfill old records</button><button class="btn-d" id="del">Delete all records</button></div></div>
+<div class="tw"><table><thead><tr><th>Name</th><th>Symptoms</th><th>Final disease</th><th>Prediction</th><th>Time</th></tr></thead><tbody id="tb"></tbody></table></div></div></div></section>
+</main><footer>AI plus rule-based detection of water-borne disease. Not a substitute for a doctor.</footer><div id="toast" role="status"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const md=s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/^- /gm,'• ').replace(/\n/g,'<br>');
+const sleep=t=>new Promise(r=>setTimeout(r,t));
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2600)}
+function show(v){$$('.view').forEach(e=>e.hidden=e.id!=='v-'+v);$$('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));if(v==='admin')loadAdmin();if(v==='chat')initChat();history.replaceState(0,'','#'+v);scrollTo(0,0)}
+async function api(p,o={}){const r=await fetch('/api/'+p,{headers:{'Content-Type':'application/json','X-Admin-Password':sessionStorage.pw||''},...o});if(r.status===401)throw Error('auth');if(!r.ok)throw Error('server');return r.json()}
+const post=(p,b)=>api(p,{method:'POST',body:JSON.stringify(b||{})});
+$$('.tabs button').forEach(b=>b.onclick=()=>show(b.dataset.v));
+
+/* ---- Disease form ---- */
+['Fever','Diarrhea','Vomiting','Abdominal pain','Jaundice','Headache','Fatigue','Dehydration'].forEach(s=>{const b=document.createElement('button');b.type='button';b.className='chip';b.textContent='+ '+s;b.onclick=()=>{const t=$('#sym'),k=s.toLowerCase(),a=t.value.split(',').map(x=>x.trim()).filter(Boolean),i=a.indexOf(k);i<0?a.push(k):a.splice(i,1);t.value=a.join(', ');b.classList.toggle('on',i<0)};$('#chips').append(b)});
+$('#f').onsubmit=async e=>{e.preventDefault();const name=$('#name').value.trim(),sym=$('#sym').value.trim();if(!name||!sym)return toast('Please enter both name and symptoms.');
+const b=$('#go');b.disabled=true;b.textContent='Analysing…';
+try{result(name,await post('predict',{name,symptoms:sym}))}catch{toast('Something went wrong. Please try again.')}
+b.disabled=false;b.textContent='Predict Disease'};
+function result(name,d){const ds=d.diseases;
+$('#res').innerHTML=`<div class="card"><div class="rh"><div><small>Result for ${esc(name)}</small><h2>${ds.length?ds.map(x=>esc(x.name)).join(' · '):'No clear match'}</h2></div><button class="btn-g" id="cp">Copy summary</button></div>${d.fallback?'<p class="note">AI unavailable, so this is a rule-based result.</p>':''}
+<div class="dg">${ds.map(x=>`<div class="dc"><h3>${esc(x.name)}</h3><p><span>PRECAUTIONS</span>${esc(x.precautions)}</p><p><span>MEDICINES</span>${esc(x.medicines)}</p></div>`).join('')}</div>${ds.length?'':`<p class="mu">${md(d.response)}</p>`}<p class="note">This is not a diagnosis. Please consult a doctor.</p></div>`;
+$('#cp').onclick=()=>navigator.clipboard.writeText(d.response).then(()=>toast('Summary copied'));$('#res').scrollIntoView({behavior:'smooth'})}
+
+/* ---- Chat ---- */
+let H=JSON.parse(localStorage.sha||'[]');
+['I have a fever and loose stools','Vomiting since last night','Yellow eyes and tiredness'].forEach(t=>{const b=document.createElement('button');b.className='chip';b.textContent=t;b.onclick=()=>send(t);$('#qp').append(b)});
+function bubble(r,t){const d=document.createElement('div');d.className='m '+r;d.innerHTML=(r==='a'?'<i class="av"></i>':'')+'<div class="b"></div>';const b=d.lastChild;b.innerHTML=md(t);$('#log').append(d);$('#log').scrollTop=1e9;return b}
+const save=()=>localStorage.sha=JSON.stringify(H.slice(-40));
+function initChat(){$('#log').innerHTML='';if(!H.length)H=[{r:'a',t:'Hi there! How can I assist you with your health concerns today?'}];H.forEach(m=>bubble(m.r,m.t))}
+async function send(t){t=t.trim();if(!t)return;$('#msg').value='';H.push({r:'u',t});bubble('u',t);const el=bubble('a','Thinking…');el.classList.add('ty');
+try{const d=await post('chat',{message:t});el.classList.remove('ty');H.push({r:'a',t:d.response});for(let i=0;i<d.response.length;i+=4){el.innerHTML=md(d.response.slice(0,i));$('#log').scrollTop=1e9;await sleep(12)}el.innerHTML=md(d.response)}
+catch{el.classList.remove('ty');el.textContent='Sorry, something went wrong. Please try again.'}save()}
+$('#snd').onclick=()=>send($('#msg').value);$('#msg').onkeydown=e=>{if(e.key==='Enter')send($('#msg').value)};
+$('#clr').onclick=()=>{H=[];save();initChat();toast('Chat cleared')};
+
+/* ---- Admin ---- */
+let rows=[];
+$('#login').onclick=()=>{sessionStorage.pw=$('#pw').value;loadAdmin()};$('#pw').onkeydown=e=>{if(e.key==='Enter')$('#login').click()};
+async function loadAdmin(){if(!sessionStorage.pw)return;try{rows=(await api('predictions')).rows;$('#gate').hidden=true;$('#dash').hidden=false;draw()}catch(e){$('#gate').hidden=false;$('#dash').hidden=true;if(e.message==='auth'){delete sessionStorage.pw;toast('Incorrect password.')}else toast('Could not load data.')}}
+function draw(){const c={};rows.forEach(r=>String(r.final_disease||'Not confirmed').split(', ').forEach(d=>c[d]=(c[d]||0)+1));const top=Object.entries(c).sort((a,b)=>b[1]-a[1]),mx=top[0]?top[0][1]:1;
+$('#met').innerHTML=[['Total predictions',rows.length],['Most common',top[0]?top[0][0]:'None yet'],['Latest entry',rows[0]&&rows[0].time?new Date(rows[0].time).toLocaleDateString():'None yet']].map(m=>`<div class="card"><span class="mu">${m[0]}</span><b>${esc(m[1])}</b></div>`).join('');
+$('#dist').innerHTML=top.slice(0,6).map(([k,v])=>`<div class="row"><span>${esc(k)}</span><div><div style="width:${v/mx*100}%"></div></div><b>${v}</b></div>`).join('')||'<p class="mu">No data yet.</p>';
+const q=$('#q').value.toLowerCase();$('#tb').innerHTML=rows.filter(r=>[r.name,r.symptoms,r.final_disease].join(' ').toLowerCase().includes(q)).map(r=>`<tr><td>${esc(r.name)}</td><td>${esc(r.symptoms)}</td><td><span class="pill">${esc(r.final_disease)}</span></td><td>${md(r.prediction).slice(0,160)}…</td><td>${r.time?new Date(r.time).toLocaleString():''}</td></tr>`).join('')||'<tr><td colspan="5" class="mu">No predictions stored yet.</td></tr>'}
+$('#q').oninput=draw;
+$('#csv').onclick=()=>{const k=['name','symptoms','final_disease','prediction','time'],q=v=>'"'+String(v??'').replace(/"/g,'""')+'"',t=[k.join(',')].concat(rows.map(r=>k.map(x=>q(r[x])).join(','))).join('\n'),a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/csv'}));a.download='predictions.csv';a.click()};
+$('#bf').onclick=async()=>{const d=await post('backfill');toast(`Updated ${d.count} old records.`);loadAdmin()};
+$('#del').onclick=async()=>{if(!confirm('Delete ALL records? This cannot be undone.'))return;const d=await post('delete');toast(`Deleted ${d.count} records.`);loadAdmin()};
+
+/* ---- 3D water ---- */
+try{const R=new THREE.WebGLRenderer({canvas:$('#bg'),alpha:true,antialias:true}),S=new THREE.Scene(),C=new THREE.PerspectiveCamera(55,1,.1,100),N=90,P=new Float32Array(N*N*3);
+C.position.set(0,5,13);for(let i=0;i<N;i++)for(let j=0;j<N;j++){P[(i*N+j)*3]=(i-N/2)*.38;P[(i*N+j)*3+2]=(j-N/2)*.38}
+const G=new THREE.BufferGeometry();G.setAttribute('position',new THREE.BufferAttribute(P,3));S.add(new THREE.Points(G,new THREE.PointsMaterial({color:0x2dd4bf,size:.055,transparent:true,opacity:.65})));
+let mx=0,my=0,t=0;addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+const rs=()=>{R.setSize(innerWidth,innerHeight,false);R.setPixelRatio(Math.min(devicePixelRatio,2));C.aspect=innerWidth/innerHeight;C.updateProjectionMatrix()};rs();addEventListener('resize',rs);
+const calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+(function f(){t+=.016;for(let i=0;i<N*N;i++){const x=P[i*3],z=P[i*3+2],d=Math.hypot(x,z);P[i*3+1]=Math.sin(x*.5+t)*.35+Math.cos(z*.45+t*.8)*.35+Math.sin(d*1.1-t*2)*.5*Math.exp(-d*.1)-3}
+G.attributes.position.needsUpdate=true;C.position.x+=(mx*4-C.position.x)*.03;C.position.y+=(5-my*2-C.position.y)*.03;C.lookAt(0,-2,0);R.render(S,C);if(!calm)requestAnimationFrame(f)})()}catch(e){}
+show(['check','chat','admin'].includes(location.hash.slice(1))?location.hash.slice(1):'check');
+</script></body></html>

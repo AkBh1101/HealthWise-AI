@@ -1,0 +1,26 @@
+# Secrets (never commit these)
+.env
+firebase_config/*.json
+*.json.json
+serviceAccountKey.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

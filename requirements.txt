@@ -1,0 +1,6 @@
+flask
+gunicorn
+streamlit
+google-generativeai
+python-dotenv
+firebase-admin
