@@ -1,4 +1,4 @@
-"""HealthWise AI - Flask server.
+"""Smart Health Assistant - Flask server.
 Reuses backend_code.py exactly as it is; only the frontend changed (static/index.html).
 Run:  pip install flask  &&  python app.py   ->  http://localhost:5000
 """
@@ -48,6 +48,27 @@ def authed():
 @app.get("/")
 def index():
     return send_from_directory(os.path.join(BASE, "static"), "index.html")
+
+
+@app.get("/api/health")
+def health():
+    """TEMPORARY diagnostics: open /api/health in the browser. Remove once admin works."""
+    import backend_code as bc
+    out = {"api_key_set": bool(bc.api_key), "admin_password_set": bool(ADMIN_PASSWORD),
+           "firebase_json_env_set": bool(_fj),
+           "key_file_exists": bool(bc.firebase_config and os.path.isfile(bc.firebase_config))}
+    if _fj:
+        try:
+            json.loads(_fj); out["firebase_json_valid"] = True
+        except Exception as e:
+            out["firebase_json_valid"] = False; out["json_error"] = str(e)[:120]
+    try:
+        out["connected"] = bool(bc._init_firebase())
+        if out["connected"]:
+            out["disease_form_has_docs"] = len(bc.db.collection("disease_form").limit(1).get()) > 0
+    except Exception as e:
+        out["connected"] = False; out["error"] = str(e)[:200]
+    return jsonify(out)
 
 
 @app.post("/api/predict")
